@@ -1,0 +1,59 @@
+#creating a to do list
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple To-Do List</title>
+</head>
+<body>
+  <marquee>Created By Siddharth Pandey</marquee>
+    <h1>To-Do List</h1>
+    <input type="text" id="taskInput" placeholder="Add a new task...">
+    <button onclick="addTask()">Add Task</button>
+    <ul id="taskList"></ul>
+
+    <script>
+        function addTask() {
+            const taskInput = document.getElementById('taskInput');
+            const taskText = taskInput.value.trim();
+
+            if (taskText !== "") {
+                const li = document.createElement('li');
+                li.textContent = taskText;
+                li.onclick = function() {
+                    li.classList.toggle('completed');
+                };
+                const deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.onclick = function() {
+                    li.remove();
+                };
+                li.appendChild(deleteButton);
+                document.getElementById('taskList').appendChild(li);
+                taskInput.value = '';
+            }
+        }
+    </script>
+    <style>
+        body {background-color: lightblue;
+            font-family: Arial, sans-serif;
+        }
+        li {
+            list-style-type: none;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f4f4f4;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        li.completed {
+            text-decoration: line-through;
+            color: #888;
+        }
+        button {
+            margin-left: 10px;
+        }
+    </style>
+</body>
+</html>
